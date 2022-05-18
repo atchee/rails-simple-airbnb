@@ -1,7 +1,24 @@
-<ul>
-<% @flats.each do |flat| %>
-<li><%= link_to flat.name, flat_path(flat) %></li>
-<% end %>
-</ul>
-<br><br>
-<%= link_to "+ flat", new_flat_path %>
+<h1>All our flats</h1>
+
+<div class="card-group">
+  <% @flats.each do |flat| %>
+
+  <div class="card">
+    <img class="card-img-top" src="https://source.unsplash.com/random/50×50" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><%= flat.name %></h5>
+      <p class="card-text"><%= flat.address %></p>
+      <div class="card-infos">
+        <p class="card-text"><i class="fa-solid fa-euro-sign"></i><%= flat.price_per_night %></small></p>
+        <p class="card-text"><i class="fa-solid fa-user-group"></i><%= flat.number_of_guests %></small></p>
+      </div>
+    </div>
+    <div class="card-actions">
+      <p class="card-text"><%= link_to "more info", flat_path(flat) %></small></p>
+      <p class="card-text"><%= link_to "edit", edit_flat_path(flat) %></small></p>
+      <p class="card-text"><%= link_to "Delete",flat_path(flat),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+      </small></p>
+    </div>
+  </div>
+  <% end %>
+</div>
